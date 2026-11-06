@@ -21,7 +21,13 @@ pub mod crud_app {
 
         Ok(())
     }
+
+    pub fn Delete(ctx: Context<Delete>, _title: String) -> Result<()> {
+
+        Ok(())
+    }
 }
+
 
 #[derive(Accounts)]
 #[instruction(title: String)]
