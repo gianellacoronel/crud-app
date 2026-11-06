@@ -22,7 +22,7 @@ pub mod crud_app {
         Ok(())
     }
 
-    pub fn Delete(ctx: Context<Delete>, _title: String) -> Result<()> {
+    pub fn delete(_ctx: Context<Delete>, _title: String) -> Result<()> {
 
         Ok(())
     }
