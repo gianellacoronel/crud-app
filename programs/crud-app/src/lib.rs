@@ -28,6 +28,20 @@ pub mod crud_app {
     }
 }
 
+#[derive(Accounts)]
+#[instruction(title: String)]
+pub struct Delete<'info> {
+    #[account(
+        mut,
+        seeds = [title.as_bytes(), owner.key().as_ref()],
+        bump,
+        close = owner,
+    )]
+    pub journal_entry: Account<'info, Journal>,
+
+    #[account(mut)]
+    pub owner: Signer<'info>
+}
 
 #[derive(Accounts)]
 #[instruction(title: String)]
