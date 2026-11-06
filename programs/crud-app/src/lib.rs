@@ -6,10 +6,12 @@ declare_id!("DGZ7J8y8hsdK2fowQTVzFwuMq79wrsG9j1BHwRpJG22L");
 pub mod crud_app {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn create(ctx: Context<Create>) -> Result<()> {
         initialize::handler(ctx)
     }
 }
+
+
 
 #[account]
 #[derive(InitSpace)]
