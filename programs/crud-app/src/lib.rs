@@ -6,12 +6,28 @@ declare_id!("DGZ7J8y8hsdK2fowQTVzFwuMq79wrsG9j1BHwRpJG22L");
 pub mod crud_app {
     use super::*;
 
-    pub fn create(ctx: Context<Create>) -> Result<()> {
-        initialize::handler(ctx)
+    pub fn create(ctx: Context<Create>, title: String, message: String) -> Result<()> {
+
     }
 }
 
+#[derive(Accounts)]
+#[instruction(title: String)]
+pub struct Create<'info> {
+    #[account(
+        init,
+        payer = owner,
+        space = 8 + Journal::INIT_SPACE,
+        seeds = [title.as_bytes(), owner.key().as_ref()],
+        bump
+    )]
+    pub journal_entry: Account<'info, Journal>,
 
+    #[account(mut)]
+    pub owner: Signer<'info>,
+
+    pub system_program: Program<'info, System>,
+}
 
 #[account]
 #[derive(InitSpace)]
