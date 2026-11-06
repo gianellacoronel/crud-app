@@ -10,3 +10,13 @@ pub mod crud_app {
         initialize::handler(ctx)
     }
 }
+
+#[account]
+#[derive(InitSpace)]
+pub struct Journal {
+    pub owner: Pubkey,
+    #[max_len(50)]
+    pub title: String,
+    #[max_len(200)]
+    pub message: String,
+}
