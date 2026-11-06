@@ -14,6 +14,30 @@ pub mod crud_app {
 
         Ok(())
     }
+
+    pub fn update(ctx: Context<Update>,) -> Result<()> {
+
+        Ok(())
+    }
+}
+
+#[derive(Accounts)]
+#[instruction(title: String)]
+pub struct Update<'info> {
+    #[account(
+        mut,
+        seeds = [title.as_bytes(), owner.key().as_ref()],
+        bump,
+        realloc = 8 + Journal::INIT_SPACE,
+        realloc::payer = owner,
+        realloc::zero = true,
+    )]
+    pub journal_entry: Account<'info, Journal>,
+
+    #[account(mut)]
+    pub owner: Signer<'info>,
+
+    pub system_program: Program<'info, System>,
 }
 
 #[derive(Accounts)]
